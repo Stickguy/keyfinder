@@ -704,6 +704,15 @@ a#clear_selected:hover {
     background-color: #a6bccd!important
 }
 
+.selected_slice_hminor {
+    background-color: #cbcda6!important
+}
+
+.selected_slice_minor.selected_slice_hminor {
+background-image: linear-gradient(45deg, #a6bccd 25%, #cbcda6 25%, #cbcda6 50%, #a6bccd 50%, #a6bccd 75%, #cbcda6 75%, #cbcda6 100%);
+background-size: 5.66px 5.66px;
+}
+
 .selected_key_text {
     color: #000
 }
