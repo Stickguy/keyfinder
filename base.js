@@ -162,27 +162,35 @@ function compareScalesAndNotes(notesArray) {
 }
 
 function nameThatKey(){
-    //notesArray = [];
+
 	var chords = $.makeArray($(".selected").map(function() {
             return $(this).html()
         }));
-    console.table(chords);
+    //console.table(chords);
     chords.forEach(function(chord) {
     getNotesFromChords(chord)
   });
   var guesses = compareScalesAndNotes(notesArray);
-  var alertText = "Probable Keys: ";
+  var alertText = "<p>Probable Keys:</p><ul>";
   guesses.forEach(function(guess, i) {
-    alertText += (i > 0 ? " , " : " ") + guess.key + ' ' + guess.type;
+    alertText += '<li>' + guess.key + ' ' + guess.type + '</li>';
   });
-$('#thekey').html(alertText),                                   $('#result').css('display', 'block'),    $(".selected_slice").removeClass("selected_slice"),     $(".selected_slice_minor").removeClass("selected_slice_minor"), $(".selected_key_text").removeClass("selected_key_text"),     guesses.forEach(function(item, index) {
+  alertText += "</ul>";
+$('#thekey').html(alertText),                                   $('#result').css('display', 'block'),    $(".selected_slice").removeClass("selected_slice"),     $(".selected_slice_minor").removeClass("selected_slice_minor"), $(".selected_slice_hminor").removeClass("selected_slice_hminor"), $(".selected_key_text").removeClass("selected_key_text"),     guesses.forEach(function(item, index) {
         var id_major = item.fullkey.replace(" ", "_").replace("#", "sharp");
         $("#" + id_major + " .pie").addClass("selected_slice");
         var id_minor = item.fullkey.replace(" ", "_").replace("#", "sharp");
+if(item.type === "Harmonic Minor"){
+        var id_hminor = id_minor.replace("_Harmonic Minor", "_Minor")
+        $("#" + id_hminor + " .pie_minor").addClass("selected_slice_hminor");
+}
+if(item.type === "Minor"){
         $("#" + id_minor + " .pie_minor").addClass("selected_slice_minor");
+}
+        //$("#" + id_minor + " .pie_minor").addClass("selected_slice_minor");
         var id_selected_text = item.fullkey.replace(" ", "_").replace("#", "sharp");
         id_selected_text += "-label", $("#" + id_selected_text).addClass("selected_key_text");
-    }), 0 == $(".rTableCell.selected").length && ($(".selected_slice").removeClass("selected_slice"), $(".selected_slice_minor").removeClass("selected_slice_minor"), $(".selected_key_text").removeClass("selected_key_text"),notesArray.length = 0)
+    }), 0 == $(".rTableCell.selected").length && ($(".selected_slice").removeClass("selected_slice"), $(".selected_slice_minor").removeClass("selected_slice_minor"),$(".selected_slice_hminor").removeClass("selected_slice_hminor"), $(".selected_key_text").removeClass("selected_key_text"),notesArray.length = 0)
 
     console.table(guesses);
 
