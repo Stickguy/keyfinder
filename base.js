@@ -162,6 +162,7 @@ function compareScalesAndNotes(notesArray) {
 }
 
 function nameThatKey(){
+    //notesArray = [];
 	var chords = $.makeArray($(".selected").map(function() {
             return $(this).html()
         }));
@@ -181,7 +182,7 @@ $('#thekey').html(alertText),                                   $('#result').css
         $("#" + id_minor + " .pie_minor").addClass("selected_slice_minor");
         var id_selected_text = item.fullkey.replace(" ", "_").replace("#", "sharp");
         id_selected_text += "-label", $("#" + id_selected_text).addClass("selected_key_text");
-    }), 0 == $(".rTableCell.selected").length && ($(".selected_slice").removeClass("selected_slice"), $(".selected_slice_minor").removeClass("selected_slice_minor"), $(".selected_key_text").removeClass("selected_key_text"))
+    }), 0 == $(".rTableCell.selected").length && ($(".selected_slice").removeClass("selected_slice"), $(".selected_slice_minor").removeClass("selected_slice_minor"), $(".selected_key_text").removeClass("selected_key_text"),notesArray.length = 0)
 
     console.table(guesses);
 
